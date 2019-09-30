@@ -2,7 +2,7 @@
 
 set -e
 
-conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan -f
 conan create . bvnp43/stable \
     -o opencv:ffmpeg=True \
     -o opencv:contrib=True \
