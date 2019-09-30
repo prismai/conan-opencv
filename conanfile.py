@@ -91,9 +91,10 @@ class OpenCVConan(ConanFile):
             del self.options.gflags
 
     def source(self):
-        sha256 = "5de5d96bdfb9dad6e6061d70f47a0a91cee96bb35afb9afb9ecb3d43e243d217"
-        tools.get("{}/archive/{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
-        os.rename('opencv-%s' % self.version, self._source_subfolder)
+        folder = 'opencv-%s' % self.version
+        git = tools.Git(folder=folder)
+        git.clone("git@github.com:prismai/opencv.git", 'prism-%s' % self.version)
+        os.rename(folder, self._source_subfolder)
 
         sha256 = "9f85d380758498d800fec26307e389620cde8b1a2e86ab51cddc5200fbe37102"
         tools.get("https://github.com/opencv/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
