@@ -8,7 +8,7 @@ import os
 
 class OpenCVConan(ConanFile):
     name = "opencv"
-    version = "4.1.1"
+    version = "4.1.2"
     license = "BSD-3-Clause"
     homepage = "https://github.com/opencv/opencv"
     url = "https://github.com/conan-community/conan-opencv"
@@ -96,7 +96,7 @@ class OpenCVConan(ConanFile):
         git.clone("git@github.com:prismai/opencv.git", 'prism-%s' % self.version)
         os.rename(folder, self._source_subfolder)
 
-        sha256 = "9f85d380758498d800fec26307e389620cde8b1a2e86ab51cddc5200fbe37102"
+        sha256 = "0f6c3d30baa39e3e7611afb481ee86dea45dafb182cac87d570c95dccd83eb8b"
         tools.get("https://github.com/opencv/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
         os.rename('opencv_contrib-%s' % self.version, 'contrib')
 
