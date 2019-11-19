@@ -197,6 +197,7 @@ class OpenCVConan(ConanFile):
         cmake.definitions['OPENCV_OTHER_INSTALL_PATH'] = "res"
         cmake.definitions['OPENCV_LICENSES_INSTALL_PATH'] = "licenses"
         cmake.definitions['BUILD_opencv_apps'] = False
+        cmake.definitions['OPENCV_SKIP_VISIBILITY_HIDDEN'] = True
 
         # Compiler configuration
         if self.settings.compiler == 'Visual Studio':
