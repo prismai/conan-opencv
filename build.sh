@@ -53,5 +53,4 @@ conan create . bvnp43/stable \
     -o opencv:quirc=False \
     -o opencv:tiff=False \
     -o opencv:webp=False \
-    --build outdated
-    ${CONAN_EXTRA_FLAGS}
+    --build outdated ${CONAN_EXTRA_FLAGS}
