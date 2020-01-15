@@ -8,9 +8,9 @@ import os
 
 class OpenCVConan(ConanFile):
     name = "opencv"
-    version = "4.1.2"
+    version = "4.2.0"
     license = "BSD-3-Clause"
-    homepage = "https://github.com/opencv/opencv"
+    homepage = "https://github.com/prismai/opencv"
     url = "https://github.com/conan-community/conan-opencv"
     author = "Conan Community"
     topics = ("conan", "opencv", "computer-vision",
@@ -91,13 +91,12 @@ class OpenCVConan(ConanFile):
             del self.options.gflags
 
     def source(self):
-        folder = 'opencv-%s' % self.version
-        git = tools.Git(folder=folder)
-        git.clone("git@github.com:prismai/opencv.git", 'prism-%s' % self.version)
-        os.rename(folder, self._source_subfolder)
+        sha256 = "44cedcd487628d52519b32e062950ffdd0f9008283c1b9bace671cee11f13a12"
+                tools.get("{}/archive/{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
+                os.rename('opencv-%s' % self.version, self._source_subfolder)
 
-        sha256 = "0f6c3d30baa39e3e7611afb481ee86dea45dafb182cac87d570c95dccd83eb8b"
-        tools.get("https://github.com/opencv/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
+        sha256 = "8a6b5661611d89baa59a26eb7ccf4abb3e55d73f99bb52d8f7c32265c8a43020"
+        tools.get("https://github.com/prismai/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
         os.rename('opencv_contrib-%s' % self.version, 'contrib')
 
         for directory in ['libjasper', 'libjpeg-turbo', 'libjpeg', 'libpng', 'libtiff',
