@@ -92,8 +92,8 @@ class OpenCVConan(ConanFile):
 
     def source(self):
         sha256 = "44cedcd487628d52519b32e062950ffdd0f9008283c1b9bace671cee11f13a12"
-                tools.get("{}/archive/{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
-                os.rename('opencv-%s' % self.version, self._source_subfolder)
+        tools.get("{}/archive/{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
+        os.rename('opencv-%s' % self.version, self._source_subfolder)
 
         sha256 = "8a6b5661611d89baa59a26eb7ccf4abb3e55d73f99bb52d8f7c32265c8a43020"
         tools.get("https://github.com/prismai/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
