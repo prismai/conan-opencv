@@ -38,6 +38,8 @@ darwin-toolchain/1.0.4@theodelrieu/stable
 fi
 
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan -f
+
+# Disable ffmpeg and png if you are building for iOS
 conan create . bvnp43/stable \
     -o opencv:contrib=True \
     -o opencv:dc1394=False \
