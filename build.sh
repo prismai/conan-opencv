@@ -39,7 +39,24 @@ fi
 
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan -f
 
-# Disable ffmpeg and png if you are building for iOS
+if [ "$PLATFORM" == "ios" ]; then
+conan create . bvnp43/stable \
+    -o opencv:contrib=True \
+    -o opencv:dc1394=False \
+    -o opencv:eigen=False \
+    -o opencv:ffmpeg=False \
+    -o opencv:freetype=False \
+    -o opencv:gflags=False \
+    -o opencv:glog=False \
+    -o opencv:harfbuzz=False \
+    -o opencv:jasper=False \
+    -o opencv:openexr=False \
+    -o opencv:png=False \
+    -o opencv:quirc=False \
+    -o opencv:tiff=False \
+    -o opencv:webp=False \
+    --build outdated ${CONAN_EXTRA_FLAGS}
+else
 conan create . bvnp43/stable \
     -o opencv:contrib=True \
     -o opencv:dc1394=False \
@@ -56,3 +73,4 @@ conan create . bvnp43/stable \
     -o opencv:tiff=False \
     -o opencv:webp=False \
     --build outdated ${CONAN_EXTRA_FLAGS}
+fi

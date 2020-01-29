@@ -91,9 +91,9 @@ class OpenCVConan(ConanFile):
             del self.options.gflags
 
     def source(self):
-        sha256 = "44cedcd487628d52519b32e062950ffdd0f9008283c1b9bace671cee11f13a12"
-        tools.get("{}/archive/prism-{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
-        os.rename('opencv-prism-%s' % self.version, self._source_subfolder)
+        sha256 = "317fe35c2801a571fc7640afe03b23c403f43e7789c8418de8c14a42b69c21d2"
+        tools.get("{}/archive/prismai{}.tar.gz".format(self.homepage, self.version), sha256=sha256)
+        os.rename('opencv-prismai%s' % self.version, self._source_subfolder)
 
         sha256 = "8a6b5661611d89baa59a26eb7ccf4abb3e55d73f99bb52d8f7c32265c8a43020"
         tools.get("https://github.com/prismai/opencv_contrib/archive/{}.tar.gz".format(self.version), sha256=sha256)
@@ -259,6 +259,7 @@ class OpenCVConan(ConanFile):
                 cmake.definitions['FFMPEG_lib%s_VERSION' % lib] = self.deps_cpp_info['ffmpeg'].version
             cmake.definitions['FFMPEG_LIBRARIES'] = ';'.join(self.deps_cpp_info['ffmpeg'].libs)
             cmake.definitions['FFMPEG_INCLUDE_DIRS'] = ';'.join(self.deps_cpp_info['ffmpeg'].include_paths)
+            cmake.definitions['WITH_AVFOUNDATION'] = False
 
         # GStreamer
         cmake.definitions['WITH_GSTREAMER'] = self.options.gstreamer
@@ -387,6 +388,8 @@ class OpenCVConan(ConanFile):
 
         if str(self.settings.os) in ["iOS", "watchOS", "tvOS"]:
             cmake.definitions['IOS'] = True
+            cmake.definitions['WITH_AVFOUNDATION'] = True
+            cmake.definitions['WITH_CAP_IOS'] = False
 
         cmake.configure(build_folder=self._build_subfolder)
         return cmake
